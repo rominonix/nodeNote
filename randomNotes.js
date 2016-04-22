@@ -1,3 +1,9 @@
+
+// Modules
+var prompt = require('prompt');
+var Promise = require("bluebird");
+
+// Variables
 var A = "\n               AAA               \n              A:::A              \n             A:::::A             \n            A:::::::A            \n           A:::::::::A           \n          A:::::A:::::A          \n         A:::::A A:::::A         \n        A:::::A   A:::::A        \n       A:::::A     A:::::A       \n      A:::::AAAAAAAAA:::::A      \n     A:::::::::::::::::::::A     \n    A:::::AAAAAAAAAAAAA:::::A    \n   A:::::A             A:::::A   \n  A:::::A               A:::::A  \n A:::::A                 A:::::A \nAAAAAAA                   AAAAAAA";
 var B = "\nBBBBBBBBBBBBBBBBB   \nB::::::::::::::::B  \nB::::::BBBBBB:::::B \nBB:::::B     B:::::B\n  B::::B     B:::::B\n  B::::B     B:::::B\n  B::::BBBBBB:::::B \n  B:::::::::::::BB  \n  B::::BBBBBB:::::B \n  B::::B     B:::::B\n  B::::B     B:::::B\n  B::::B     B:::::B\nBB:::::BBBBBB::::::B\nB:::::::::::::::::B \nB::::::::::::::::B  \nBBBBBBBBBBBBBBBBB   "
 var C = "\n        CCCCCCCCCCCCC\n     CCC::::::::::::C\n   CC:::::::::::::::C\n  C:::::CCCCCCCC::::C\n C:::::C       CCCCCC\nC:::::C              \nC:::::C              \nC:::::C              \nC:::::C              \nC:::::C              \nC:::::C              \n C:::::C       CCCCCC\n  C:::::CCCCCCCC::::C\n   CC:::::::::::::::C\n     CCC::::::::::::C\n        CCCCCCCCCCCCC"
@@ -8,10 +14,45 @@ var G = "\n        GGGGGGGGGGGGG\n     GGG::::::::::::G\n   GG:::::::::::::::G\n
 var notes = [A, B, C, D, E, F, G];
 var iterarationer = 0;
 
-var howManyIterations = process.argv[2];
+
+
+var howManyIterations = process.argv[3] || 10;
+var mode = process.argv[2];
+var level = {
+  speed: 0,
+  name: "",
+};
+
+
+switch (mode) {
+  case "easy":
+    level.speed = 5000;
+    level.name = "Easy";
+    break;
+  case "medium":
+    level.speed = 3000;
+    level.name = "Medium";
+    break;
+  case "hard":
+    level.speed = 2000;
+    level.name = "Hard";
+    break;
+  case "pro":
+    level.speed = 1000;
+    level.name = "Pro";
+    break;
+  case "insane":
+    level.speed = 500;
+    level.name = "Infuckingsane";
+    break;
+  default:
+  level.speed = 3000;
+  level.name = "Medium";
+  break;
+}
 
 function welcome(){
-  console.log("Welcome to the Note-game. We are staring in just a few seconds.")
+  console.log("Welcome to the Note-game.\nYou have choosen level: " + level.name.toUpperCase() + "\nWe are staring in just a few seconds. Get your instrument ready!\n\n\n")
 
 var notIntervall = setInterval(function(){
       var randomNumber = Math.round(Math.random() * 6);
@@ -19,11 +60,10 @@ var notIntervall = setInterval(function(){
       if (iterarationer == howManyIterations){
         clearInterval(notIntervall);
       }
-      console.log("#############\nIterations ",iterarationer, "\n#############\n");
+      console.log("#############\nIteration: ",iterarationer, "\n#############\n");
       console.log(notes[randomNumber], "\n\n\n\n");
-   }, 4500);
+   }, level.speed);
 
-console.log(iterarationer);
 }
 
 welcome();

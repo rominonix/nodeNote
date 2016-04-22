@@ -1,0 +1,24 @@
+{
+  "name": "nodenote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "randomNotes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xapax/nodeNote.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xapax/nodeNote/issues"
+  },
+  "homepage": "https://github.com/xapax/nodeNote#readme",
+  "dependencies": {
+    "beepbeep": "^1.2.0",
+    "bluebird": "^3.3.5",
+    "prompt": "^1.0.0"
+  }
+}
